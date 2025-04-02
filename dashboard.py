@@ -6,6 +6,7 @@ st.set_page_config(layout="wide", page_title="Dashboard PCA 2025")
 # Carrega os dados
 df = pd.read_csv("pca_2025 07_02_25.csv", encoding='iso8859-1', delimiter=';')
 
+
 st.title("Dashboard PCA 2025")
 
 # Renomeia colunas
@@ -14,6 +15,14 @@ df = df.rename(columns={
     'Data estimada para a conclusão do processo de contratação': 'Conclusão Estimada',
     'ID': 'ID PCA'
 })
+
+# Converte colunas numéricas de datas para datetime (assumindo formato Excel)
+df['Início Estimado'] = pd.to_datetime(df['Início Estimado'], origin='1899-12-30', unit='D')
+df['Conclusão Estimada'] = pd.to_datetime(df['Conclusão Estimada'], origin='1899-12-30', unit='D')
+
+# Formata para exibir sem hora
+df['Início Estimado'] = df['Início Estimado'].dt.strftime('%d/%m/%Y')
+df['Conclusão Estimada'] = df['Conclusão Estimada'].dt.strftime('%d/%m/%Y')
 
 # Colunas a exibir
 colunas_selecionadas = [
