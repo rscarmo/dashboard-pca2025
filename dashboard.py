@@ -11,12 +11,13 @@ st.title("Dashboard PCA 2025")
 # Renomeia colunas
 df = df.rename(columns={
     'Data estimada para o início do processo de contratação': 'Início Estimado',
-    'Data estimada para a conclusão do processo de contratação': 'Conclusão Estimada'
+    'Data estimada para a conclusão do processo de contratação': 'Conclusão Estimada',
+    'ID': 'ID PCA'
 })
 
 # Colunas a exibir
 colunas_selecionadas = [
-    'Nº DFD', 'Nº do Item no DFD', 'Área requisitante', 'Nome Classe/Grupo', 'Início Estimado', 'Conclusão Estimada'
+    'ID PCA', 'Nº DFD', 'Nº do Item no DFD', 'Área requisitante', 'Nome Classe/Grupo', 'Início Estimado', 'Conclusão Estimada'
 ]
 
 # Valores únicos
