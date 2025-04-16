@@ -13,7 +13,9 @@ st.title("Dashboard PCA 2025")
 df = df.rename(columns={
     'Data estimada para o início do processo de contratação': 'Início Estimado',
     'Data estimada para a conclusão do processo de contratação': 'Conclusão Estimada',
-    'ID': 'ID PCA'
+    'ID': 'ID PCA',
+    'Número da contratação' : 'ID Fut. Contratação',
+    'Valor total da contratação' : 'Vl. Tot. Contratação'
 })
 
 # Converte colunas numéricas de datas para datetime (assumindo formato Excel)
@@ -24,9 +26,13 @@ df['Conclusão Estimada'] = pd.to_datetime(df['Conclusão Estimada'], origin='18
 df['Início Estimado'] = df['Início Estimado'].dt.strftime('%d/%m/%Y')
 df['Conclusão Estimada'] = df['Conclusão Estimada'].dt.strftime('%d/%m/%Y')
 
+# Formata para exibir valor
+df['Vl. Tot. Contratação'] = df['Vl. Tot. Contratação'].apply(lambda x: f'R$ {x:,.2f}'.replace(',', 'v').replace('.', ',').replace('v', '.'))
+
 # Colunas a exibir
 colunas_selecionadas = [
-    'ID PCA', 'Nº DFD', 'Nº do Item no DFD', 'Área requisitante', 'Nome Classe/Grupo', 'Início Estimado', 'Conclusão Estimada'
+    'ID PCA', 'ID Fut. Contratação', 'Nº DFD', 'Nº do Item no DFD', 'Área requisitante', 'Código Classe/Grupo', 
+    'Nome Classe/Grupo', 'Início Estimado', 'Conclusão Estimada', 'Vl. Tot. Contratação'
 ]
 
 # Valores únicos
